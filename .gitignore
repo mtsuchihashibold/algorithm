@@ -1,0 +1,10 @@
+# .gitignore
+
+# files
+*~
+
+# directories
+.*/
+
+# links
+
