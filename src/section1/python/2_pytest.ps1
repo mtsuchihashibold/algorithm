@@ -35,10 +35,10 @@ if ( $job1.State -eq "Completed" ) {
     $res=(Compare-Object -ReferenceObject $ans -DifferenceObject $tmp);
 
     # 制限時間内に完答した
-    if ( $res -eq $null -and $time.TotalSeconds -le $LIMITTIME ) {
+    if ( $res -eq $null -and [double]::parse($time) -le $LIMITTIME ) {
         Write-Host "Ellapsed Time(seconds): $($time)";
         Write-Host "AC";
-    } elseif ( $time.TotalSeconds -gt $LIMITTIME ) {
+    } elseif ( [double]::parse($time) -gt $LIMITTIME ) {
         WriteHost "TLE";
     } else {
         Write-Host "WA";
