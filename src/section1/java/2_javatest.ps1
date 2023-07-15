@@ -42,6 +42,7 @@ Write-Host "DATA1: --------";
 if ( $job1.State -eq "Completed" ) {
     $ret=(Receive-Job $job1);
     $time, $tmp = $ret -split "`t";
+    $tmp = $tmp -replace " +`r?`n?`$", "";
     $res=(Compare-Object -ReferenceObject $ans -DifferenceObject $tmp);
 
     # 制限時間内に完答した
