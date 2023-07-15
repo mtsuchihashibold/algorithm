@@ -7,8 +7,6 @@ if ( $list.length -eq 0 ) {
     Write-Host "Abort.";
     exit 1;
 }
-# $cmd="$($list[$lise.length -1].fullname) -t:build | Out-Null ; if ( -not $? ) { Write-Host 'MSBuild fail. Abort.'; exit 1; }"
-# $cmd="$($list[$lise.length -1].fullname) -t:build ; if ( -not `$? ) { Write-Host 'MSBuild fail. Abort.'; exit 1; }"
 $cmd="$($list[$lise.length -1].fullname) -t:build | Out-Null";
 
 New-Item ".\tmp" -ItemType Directory | Out-Null
