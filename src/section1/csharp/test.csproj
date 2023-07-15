@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<AssemblyName>test</AssemblyName>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OutputPath>bin\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Main.cs" />
+	</ItemGroup>
+
+	<Target Name="Build" Inputs="@(Compile)" Outputs="$(OutputPath)$(AssemblyName).exe" >
+		<Message text="DefineConstants: $(DefineConstants)" />
+		<Message text="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+		<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+		<Message text="Create: $(OutputPath)$(AssemblyName).exe" />
+		<Csc
+			Sources="@(Compile)"
+			OutputAssembly="$(OutputPath)$(AssemblyName).exe"
+			DefineConstants="$(DefineConstants)"
+		/>
+	</Target>
+	<Target Name="Clean">
+		<Delete Files="$(OutputPath)$(AssemblyName).exe" />
+	</Target>
+	<Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>
